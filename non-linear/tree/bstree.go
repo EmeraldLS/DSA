@@ -70,6 +70,24 @@ func (bst *BSTree) InOrderTraversal(node *Node, level int) {
 	bst.InOrderTraversal(node.right, level+1)
 }
 
+func (bst *BSTree) InterativeInorderTraversal() {
+	curr := bst.root
+	fmt.Println(curr.data)
+	var stack = []int{curr.data}
+
+	for len(stack) > 0 {
+		if curr != nil {
+			stack = append(stack, curr.data)
+			curr = curr.left
+			fmt.Println(curr.data)
+		} else {
+			stack = append(stack[:len(stack)-1], stack[len(stack)+1:]...)
+		}
+	}
+
+	fmt.Println(stack)
+}
+
 func (bst *BSTree) BFS() {
 	if bst.root == nil {
 		return
@@ -93,6 +111,19 @@ func (bst *BSTree) BFS() {
 	}
 }
 
+/* Construct the following tree
+          10
+        /   \
+       /     \
+      20       30
+     /      /   \
+    /      /     \
+   40      50      60
+         / \
+        /   \
+       70     80
+*/
+
 func main() {
 	bst := &BSTree{}
 	bst.InsertNodeToTree(10).
@@ -101,7 +132,8 @@ func main() {
 		InsertNodeToTree(40).
 		InsertNodeToTree(50).
 		InsertNodeToTree(60).
-		InsertNodeToTree(70)
+		InsertNodeToTree(70).
+		InsertNodeToTree(80)
 
-	bst.BFS()
+	bst.InterativeInorderTraversal()
 }

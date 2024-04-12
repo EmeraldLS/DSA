@@ -53,20 +53,20 @@ func (ll *LinkedList) Traverse() {
 
 func (ll *LinkedList) Middle() {
 	var list []int
+
 	for ll.head != nil {
 		list = append(list, ll.head.value)
 		ll.head = ll.head.next
 	}
 
 	var middle int
+	listDivBy2 := (len(list) / 2)
 
 	if len(list) > 0 {
-		listDivBy2 := len(list) / 2
 		middle = list[listDivBy2]
-
-		fmt.Println(middle)
 	}
 
+	fmt.Println("Middle =", middle)
 }
 
 type Node struct {
@@ -89,10 +89,7 @@ func main() {
 		Insert(2).
 		Insert(3).
 		Insert(4).
-		Insert(5).
-		Insert(6).
-		Insert(7).
-		Insert(8)
+		Insert(5)
 
 	// ll.Traverse()
 
